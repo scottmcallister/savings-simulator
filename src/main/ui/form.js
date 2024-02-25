@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { calculateCompoundInterestWithContributions } from './utils';
 
 
-function MyForm({ handleSubmit }) {
+function MyForm({ callback }) {
   const [principal, setPrincipal] = useState(0);
   const [rate, setRate] = useState(0.08);
-  const [years, setYears] = useState(0);
+  const [years, setYears] = useState(1);
   const [monthlyContribution, setMonthlyContribution] = useState(0);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newTotal = calculateCompoundInterestWithContributions(principal, rate, 12, years, monthlyContribution);
+    callback(newTotal);
+  };
   return (
     <>
         <Form onSubmit={handleSubmit}>
@@ -42,7 +48,9 @@ function MyForm({ handleSubmit }) {
               value={years}
               onChange={e => setYears(e.target.value)} />
           </Form.Group>
-          <Button type="submit" variant='outline-primary'>Submit</Button>
+          <Form.Group style={{ paddingTop: '20px' }}>
+            <Button type="submit" variant='outline-primary'>Submit</Button>
+          </Form.Group>
       </Form></>
   );
 }

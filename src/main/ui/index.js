@@ -1,22 +1,17 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { calculateCompoundInterestWithContributions } from './utils';
 import MyForm from './form';
 import { Container, Row, Col } from 'react-bootstrap';
 
 function App() {
   const [total, setTotal] = React.useState(0);
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const newTotal = calculateCompoundInterestWithContributions(principal, rate, 12, years, monthlyContribution);
-    setTotal(newTotal);
-  };
+  
   return (
     <Container>
       <h1>Compound Interest Calculator</h1>
       <Row>
         <Col>
-          <MyForm handleSubmit={handleSubmit}/>
+          <MyForm callback={(newTotal) => setTotal(newTotal)}/>
         </Col>
       </Row>
       <Row style={{ paddingTop: '30px' }}>

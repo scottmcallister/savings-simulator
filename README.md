@@ -1,15 +1,17 @@
-# 🚀 Welcome to your new awesome project!
+# savings-simulator
 
-This project has been created using **webpack-cli**, you can now run
+This project was built using spring boot and react. The back end doesn't really do much right now besides just serve up the react front end. 
 
-```
-npm run build
-```
+## Running Locally
 
-or
+Open a terminal and watch for changes in webpack. 
 
 ```
-yarn build
+npm run watch
 ```
 
-to bundle your application
+Open a second terminal and run the spring server
+
+```
+./mvnw spring-boot:run
+```
