@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { calculateCompoundInterestWithContributions } from './utils';
+import { calculateCompoundInterestWithContributions, getTotalsByMonth } from './utils';
 
 
 function MyForm({ callback }) {
@@ -11,7 +11,8 @@ function MyForm({ callback }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const newTotal = calculateCompoundInterestWithContributions(principal, rate, 12, years, monthlyContribution);
-    callback(newTotal);
+    const newTotalByMonth = getTotalsByMonth(principal, rate, 12, years, monthlyContribution);
+    callback(newTotal, newTotalByMonth);
   };
   return (
     <>

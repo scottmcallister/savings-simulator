@@ -25,3 +25,21 @@ export function calculateCompoundInterestWithContributions(principal, rate, time
 
     return totalAmount;
 }
+
+export function getTotalsByMonth(principal, rate, timesPerYear, years, monthlyContribution) {
+    let totals = [];
+    let totalAmount = principal;
+
+    // compound the initial principal
+    for (let i = 0; i < timesPerYear * years; i++) {
+        totalAmount = totalAmount * (1 + rate / timesPerYear);
+        let contribution = monthlyContribution;
+        for (let j = 0; j < timesPerYear * years - i; j++) {
+            contribution = contribution * (1 + rate / timesPerYear);
+        }
+        totalAmount += contribution;
+        totals.push(totalAmount);
+    }
+
+    return totals;
+}
